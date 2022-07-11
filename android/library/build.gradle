@@ -21,11 +21,11 @@ repositories {
 }
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 31
 
     defaultConfig {
-        minSdkVersion 18
-        targetSdkVersion 28
+        minSdkVersion 21
+        targetSdkVersion 31
         versionCode 1
         versionName "1.0"
     }
@@ -42,7 +42,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "com.polidea.rxandroidble:rxandroidble:1.7.1"
+    implementation "com.polidea.rxandroidble2:rxandroidble:1.13.1"
     testImplementation 'junit:junit:4.12'
 }
 
