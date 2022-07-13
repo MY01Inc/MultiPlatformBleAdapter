@@ -38,11 +38,15 @@ android {
             matchingFallbacks = ['debug', 'release']
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "com.polidea.rxandroidble2:rxandroidble:1.13.1"
+    implementation "com.polidea.rxandroidble2:rxandroidble:1.15.1"
     testImplementation 'junit:junit:4.12'
 }
 
