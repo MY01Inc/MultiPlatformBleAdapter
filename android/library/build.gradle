@@ -1,5 +1,4 @@
 apply plugin: 'com.android.library'
-//apply plugin: 'com.github.dcendents.android-maven'
 
 group='com.github.Polidea'
 
@@ -11,7 +10,6 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.4.2'
-        //classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
     }
 }
 
