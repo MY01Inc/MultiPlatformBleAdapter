@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
+apply plugin: 'maven-publish'
 
-group='com.github.Polidea'
+group='com.github.MY01Inc'
 
 buildscript {
     repositories {
@@ -9,7 +10,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.4.2'
+        classpath 'com.android.tools.build:gradle:7.0.3'
     }
 }
 
@@ -40,6 +41,18 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+}
+publishing {
+        publications {
+            release(MavenPublication) {
+                groupId 'com.github.MY01Inc'
+                artifactId 'MultiPlatformBleAdapter'
+                version '1.0.0'
+                afterEvaluate{
+                    from components.release
+                }
+            }
+        }
 }
 
 dependencies {
