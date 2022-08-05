@@ -32,6 +32,8 @@ import com.polidea.rxandroidble2.RxBleClient;
 import com.polidea.rxandroidble2.RxBleConnection;
 import com.polidea.rxandroidble2.RxBleDevice;
 import com.polidea.rxandroidble2.RxBleDeviceServices;
+import com.polidea.rxandroidble2.Timeout;
+import com.polidea.rxandroidble2.exceptions.BleException;
 import com.polidea.rxandroidble2.internal.RxBleLog;
 import com.polidea.rxandroidble2.scan.ScanFilter;
 import com.polidea.rxandroidble2.scan.ScanSettings;
@@ -1191,8 +1193,15 @@ public class BleModule implements BleAdapter {
 
         final SafeExecutor<Device> safeExecutor = new SafeExecutor<>(onSuccessCallback, onErrorCallback);
 
+        Timeout timeoutObject;
+        if (timeout != null) {
+            timeoutObject = new Timeout(timeout, TimeUnit.MILLISECONDS);
+        } else {
+            timeoutObject = new Timeout(Integer.MAX_VALUE, TimeUnit.DAYS);
+        }
+
         Observable<RxBleConnection> connect = device
-                .establishConnection(autoConnect)
+                .establishConnection(autoConnect, timeoutObject)
                 .doOnSubscribe(disposable -> onConnectionStateChangedCallback.onEvent(ConnectionState.CONNECTING))
                 .doOnDispose(() -> {
                     safeExecutor.error(BleErrorUtils.cancelled());
@@ -1217,11 +1226,6 @@ public class BleModule implements BleAdapter {
                     .requestMtu(requestMtu)
                     .map(integer -> rxBleConnection).toObservable());
         }
-
-        if (timeout != null) {
-            connect = connect.timeout(timeout, TimeUnit.MILLISECONDS, Observable.never());
-        }
-
 
         DisposableObserver<RxBleConnection> observer = new DisposableObserver<RxBleConnection>() {
             @Override
