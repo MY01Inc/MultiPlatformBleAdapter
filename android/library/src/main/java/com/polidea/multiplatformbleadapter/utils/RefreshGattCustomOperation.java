@@ -37,7 +37,6 @@ public class RefreshGattCustomOperation implements RxBleCustomOperation<Boolean>
                         }
 
                         success = (Boolean) bluetoothGattRefreshFunction.invoke(bluetoothGatt);
-                        RxBleLog.d("Urvish success","bluetoothGatt");
                         if (!success) RxBleLog.d("BluetoothGatt.refresh() returned false");
                     } catch (Exception e) {
                         RxBleLog.d(e, "Could not call function BluetoothGatt.refresh()");

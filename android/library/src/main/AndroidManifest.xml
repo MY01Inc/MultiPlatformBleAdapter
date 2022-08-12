@@ -7,8 +7,7 @@
         <uses-permission
             android:name="android.permission.BLUETOOTH_ADMIN"
             android:maxSdkVersion="30" />
-
-        <!-- TODO: add android:maxSdkVersion on 2.0.0 -->
+        
         <uses-permission-sdk-23 android:name="android.permission.ACCESS_COARSE_LOCATION" android:maxSdkVersion="30"/>
         <uses-permission-sdk-23 android:name="android.permission.ACCESS_FINE_LOCATION" android:maxSdkVersion="30"/>
         <!-- API 31+ -->
