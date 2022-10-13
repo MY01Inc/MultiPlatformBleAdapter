@@ -1,4 +1,4 @@
-package com.polidea.multiplatformbleadapter;
-
-public interface BleException {
-}
+//package com.polidea.multiplatformbleadapter;
+//
+//public interface BleException {
+//}

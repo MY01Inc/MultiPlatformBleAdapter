@@ -1,7 +1,7 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'maven-publish'
 
-group='com.github.Polidea'
+group='com.github.MY01Inc'
 
 buildscript {
     repositories {
@@ -10,8 +10,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.4.2'
-        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
+        classpath 'com.android.tools.build:gradle:7.0.3'
     }
 }
 
@@ -21,11 +20,11 @@ repositories {
 }
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 31
 
     defaultConfig {
-        minSdkVersion 18
-        targetSdkVersion 28
+        minSdkVersion 21
+        targetSdkVersion 31
         versionCode 1
         versionName "1.0"
     }
@@ -38,11 +37,27 @@ android {
             matchingFallbacks = ['debug', 'release']
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+publishing {
+        publications {
+            release(MavenPublication) {
+                groupId 'com.github.MY01Inc'
+                artifactId 'MultiPlatformBleAdapter'
+                version '1.0.0'
+                afterEvaluate{
+                    from components.release
+                }
+            }
+        }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "com.polidea.rxandroidble:rxandroidble:1.7.1"
+    implementation "com.polidea.rxandroidble2:rxandroidble:1.15.1"
     testImplementation 'junit:junit:4.12'
 }
 
